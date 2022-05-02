@@ -3,7 +3,7 @@ package com.example.naviassignment.features.closedPullRequests.data.api.model
 import com.google.gson.annotations.SerializedName
 
 data class GithubApiResponse(
-
+    val response: List<PullRequestData>
 ) {
     data class PullRequestData(
         @SerializedName("id")
