@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/layout/activity_pull_request.xml" value="0.325" />
         <entry key="app/src/main/res/layout/layout_error_api.xml" value="0.325" />
+        <entry key="app/src/main/res/layout/rv_pull_request_item.xml" value="0.41763005780346824" />
       </map>
     </option>
   </component>
