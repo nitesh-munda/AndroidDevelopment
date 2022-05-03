@@ -15,7 +15,7 @@ fun View.setVisibility(visible: Boolean) {
 }
 
 fun String.getSpannable(s: String): CharSequence? {
-    val data = SpannableString(this+s)
+    val data = SpannableString(s+this)
     val boldStartSpan = 0
     val boldEndSpan = s.length
     data.setSpan(

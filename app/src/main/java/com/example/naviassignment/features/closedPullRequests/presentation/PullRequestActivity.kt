@@ -11,6 +11,7 @@ import com.example.naviassignment.features.closedPullRequests.data.api.model.Rep
 import com.example.naviassignment.features.closedPullRequests.domain.repository.GithubRepository
 import com.example.naviassignment.features.closedPullRequests.domain.usecase.PullRequestUseCase
 import com.example.naviassignment.features.closedPullRequests.presentation.view.PullRequestAdapter
+import com.example.naviassignment.features.closedPullRequests.presentation.view.SpaceDecoration
 import core.network.RetrofitService
 
 class PullRequestActivity: AppCompatActivity() {
@@ -74,6 +75,7 @@ class PullRequestActivity: AppCompatActivity() {
                 LinearLayoutManager.VERTICAL,
                 false
             )
+            addItemDecoration(SpaceDecoration())
         }
     }
 }

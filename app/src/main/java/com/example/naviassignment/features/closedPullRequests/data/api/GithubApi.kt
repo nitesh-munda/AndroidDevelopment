@@ -5,6 +5,7 @@ import com.example.naviassignment.features.closedPullRequests.data.apiConstants.
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface GithubApi {
     @GET(PULL_REQUEST)
@@ -12,6 +13,8 @@ interface GithubApi {
         @Path("owner")
         username: String,
         @Path("repo")
-        repo: String
+        repo: String,
+        @Query("status")
+        status: String = "closed"
     ) : Single<List<PullRequestData>>
 }

@@ -3,11 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/sixteen_dp"
+    android:elevation="@dimen/eight_dp"
+    app:cardCornerRadius="@dimen/ten_dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#D3D3D3"
+        android:padding="@dimen/sixteen_dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivAvatar"
@@ -21,6 +26,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sixteen_dp"
             android:layout_marginTop="@dimen/ten_dp"
             app:layout_constraintBottom_toTopOf="@+id/tvUserName"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,6 +40,7 @@
             android:id="@+id/tvUserName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sixteen_dp"
             android:layout_marginTop="@dimen/ten_dp"
             app:layout_constraintBottom_toTopOf="@+id/tvCreatedDate"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,6 +53,7 @@
             android:id="@+id/tvCreatedDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sixteen_dp"
             android:layout_marginTop="@dimen/ten_dp"
             app:layout_constraintBottom_toTopOf="@+id/tvClosedDate"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,6 +66,7 @@
             android:id="@+id/tvClosedDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sixteen_dp"
             android:layout_marginTop="@dimen/ten_dp"
             app:layout_constraintBottom_toTopOf="@+id/tvStatus"
             app:layout_constraintEnd_toEndOf="parent"
@@ -70,17 +79,18 @@
             android:id="@+id/tvStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sixteen_dp"
             android:layout_marginTop="@dimen/ten_dp"
             android:layout_marginBottom="@dimen/ten_dp"
+            android:background="@color/red"
             android:padding="@dimen/three_dp"
+            android:text="@string/closed"
             android:textColor="@color/black"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/ivAvatar"
-            app:layout_constraintTop_toBottomOf="@+id/tvClosedDate"
-            tools:background="@color/red"
-            tools:text="Closed"
-            tools:textStyle="bold" />
+            app:layout_constraintTop_toBottomOf="@+id/tvClosedDate" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

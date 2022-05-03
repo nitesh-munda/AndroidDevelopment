@@ -1,5 +1,6 @@
 package com.example.naviassignment.features.closedPullRequests.presentation.view
 
+import android.graphics.Color
 import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
@@ -8,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.naviassignment.R
-import com.example.naviassignment.features.closedPullRequests.data.api.model.PullRequestData
+import com.example.naviassignment.features.closedPullRequests.data.api.model.*
 import com.example.naviassignment.util.getSpannable
 import com.example.naviassignment.util.setVisibility
 
 class PullRequestViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-    private val ivIcon = view.findViewById<AppCompatImageView>(R.id.ivIcon)
+    private val ivAvatar = view.findViewById<AppCompatImageView>(R.id.ivAvatar)
     private val tvTitle = view.findViewById<AppCompatTextView>(R.id.tvTitle)
     private val tvUserName = view.findViewById<AppCompatTextView>(R.id.tvUserName)
     private val tvCreatedDate = view.findViewById<AppCompatTextView>(R.id.tvCreatedDate)
@@ -27,12 +28,23 @@ class PullRequestViewHolder(private val view: View) : RecyclerView.ViewHolder(vi
             setTitle(this.title)
             setUserName(this.userDetails.login)
             setDates(this.createdAt, this.closedAt)
-            setStatusTag(this.state)
+            setStatusTag(this.getState())
         }
     }
 
-    private fun setStatusTag(state: String) {
-        tvStatus.text = state
+    private fun setStatusTag(state: StateOfPR) {
+        tvStatus.text = state.data
+        when(state) {
+            is Closed -> {
+                tvStatus.setBackgroundColor(Color.parseColor("#FF0000"))
+            }
+            is Merged -> {
+                tvStatus.setBackgroundColor(Color.parseColor("#FFBB86FC"))
+            }
+            is Open -> {
+                tvStatus.setBackgroundColor(Color.parseColor("#00FF00"))
+            }
+        }
     }
 
     private fun setDates(createdAt: String, closedAt: String) {
@@ -48,17 +60,17 @@ class PullRequestViewHolder(private val view: View) : RecyclerView.ViewHolder(vi
         tvTitle.text = title.getSpannable("Title: ")
     }
 
-    private fun setIcon(avatarUrl: String) {
+    private fun setIcon(avatarUrl: String?) {
         try {
-            ivIcon.setVisibility(true)
+            ivAvatar.setVisibility(true)
             Glide.with(view.context)
                 .load(avatarUrl)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
-                .into(ivIcon)
+                .into(ivAvatar)
 
         } catch (e: Exception) {
             Log.e("PullRequestViewHolder", "Caught exception")
-            ivIcon.setVisibility(false)
+            ivAvatar.setVisibility(false)
         }
     }
 }
