@@ -14,7 +14,7 @@ interface GithubApi {
         username: String,
         @Path("repo")
         repo: String,
-        @Query("status")
+        @Query("state")
         status: String = "closed"
     ) : Single<List<PullRequestData>>
 }
