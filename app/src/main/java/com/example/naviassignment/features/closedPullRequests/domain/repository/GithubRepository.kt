@@ -1,22 +1,18 @@
 package com.example.naviassignment.features.closedPullRequests.domain.repository
 
 import com.example.naviassignment.features.closedPullRequests.data.api.GithubApi
-import com.example.naviassignment.features.closedPullRequests.data.api.model.GithubApiResponse
-import retrofit2.Response
+import com.example.naviassignment.features.closedPullRequests.data.api.model.PullRequestData
+import com.example.naviassignment.features.closedPullRequests.data.api.model.RepoDetails
+import io.reactivex.Single
 
 class GithubRepository(
-    private val githubApi: GithubApi
+    private val githubApi: GithubApi,
+    private val repoDetails: RepoDetails
 ) {
-    suspend fun getAllClosedPullRequest(): ResponseResult {
-        val result = githubApi.getClosedPullRequests()
-        val data = result.body()
-        if (result.isSuccessful && data != null) {
-            return Success(data)
-        } else {
-            return Error(getHttpError(result))
-        }
+    fun getAllClosedPullRequest(): Single<List<PullRequestData>> {
+        return githubApi.getClosedPullRequests(
+            username = repoDetails.username,
+            repo = repoDetails.repo
+        )
     }
-
-    private fun getHttpError(result: Response<GithubApiResponse>) =
-        result.message() ?: "Something went wrong"
 }
